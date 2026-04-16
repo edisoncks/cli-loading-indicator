@@ -1,7 +1,6 @@
 "use strict";
 
-const readline = require("readline");
-const ansi = require("ansi");
+import readline from "readline";
 
 // Braille patterns from:
 // http://symbolcodes.tlt.psu.edu/bylanguage/braillechart.html
@@ -13,9 +12,8 @@ const PATTERNS = {
 function LoadingIndicator(attributes) {
   attributes = attributes || {};
   this.size = attributes.size || "large";
-  this.patterns = PATTERNS[this.size];
+  this.patterns = [...PATTERNS[this.size]];
   this.interval = attributes.interval || 70;
-  this.cursor = ansi(process.stdout);
   this.format =
     attributes.format ||
     function (pattern) {
@@ -31,14 +29,14 @@ LoadingIndicator.prototype.start = function () {
     input: process.stdin,
     output: process.stdout,
   });
-  this.cursor.hide();
+  process.stdout.write("\x1b[?25l");
   this.patternIndex = 0;
   this._animationInterval = setInterval(animate.bind(this), this.interval);
 };
 
 LoadingIndicator.prototype.stop = function () {
   resetLineAndCursor();
-  this.cursor.show();
+  process.stdout.write("\x1b[?25h");
   this.readlineInterface.close();
   if (this._animationInterval) {
     clearInterval(this._animationInterval);
@@ -63,4 +61,4 @@ function resetLineAndCursor() {
   readline.cursorTo(process.stdout, 0);
 }
 
-module.exports = LoadingIndicator;
+export default LoadingIndicator;

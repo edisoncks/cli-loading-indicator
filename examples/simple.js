@@ -1,8 +1,8 @@
 "use strict";
 
-const LoadingIndicator = require("../index");
+import LoadingIndicator from "../index.js";
 
-let loadingIndicator = new LoadingIndicator({ size: "large" });
+const loadingIndicator = new LoadingIndicator({ size: "large" });
 
 // Display loading indicator for 5 seconds, and then stop.
 loadingIndicator.start();

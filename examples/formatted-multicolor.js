@@ -1,15 +1,15 @@
 "use strict";
 
-const chalk = require("chalk");
-const LoadingIndicator = require("../index");
+import chalk from "chalk";
+import LoadingIndicator from "../index.js";
 
 const colors = ["cyan", "blue", "magenta", "red", "yellow", "yellow"];
 
-let loadingIndicator = new LoadingIndicator({
+const loadingIndicator = new LoadingIndicator({
   size: "small",
   rotation: "ccw",
   format: function (pattern, i) {
-    let color = colors[i];
+    const color = colors[i];
     return chalk.blue("➜") + " connecting " + chalk[color](pattern);
   },
 });

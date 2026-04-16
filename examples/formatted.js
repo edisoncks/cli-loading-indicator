@@ -1,9 +1,9 @@
 "use strict";
 
-const chalk = require("chalk");
-const LoadingIndicator = require("../index");
+import chalk from "chalk";
+import LoadingIndicator from "../index.js";
 
-let loadingIndicator = new LoadingIndicator({
+const loadingIndicator = new LoadingIndicator({
   size: "large",
   rotation: "cw",
   format: function (pattern) {
