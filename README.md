@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013 MD033 MD045 -->
 
-# cli-loading-indicator [![Test](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml/badge.svg)](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml) [![NPM Version](http://img.shields.io/npm/v/braille-pattern-cli-loading-indicator.svg?style=flat)](https://www.npmjs.org/package/braille-pattern-cli-loading-indicator)
+# cli-loading-indicator [![Test](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml/badge.svg)](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml) [![NPM Version](http://img.shields.io/npm/v/@edisoncks/cli-loading-indicator.svg?style=flat)](https://www.npmjs.org/package/@edisoncks/cli-loading-indicator)
 
 Animated command line loading indicator using Unicode braille patterns (based on
 Heroku CLI).
