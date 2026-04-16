@@ -40,20 +40,22 @@ Animated command line loading indicator using Unicode braille patterns (based on
 - Optionally provide a custom `format` function to add text or colors for the loading indicator.
 
 ```javascript
-'use strict'
-const LoadingIndicator = require('braille-pattern-cli-loading-indicator')
+"use strict";
+const LoadingIndicator = require("braille-pattern-cli-loading-indicator");
 
 const loader = new LoadingIndicator({
-  size: 'large',
-  rotation: 'cw',
+  size: "large",
+  rotation: "cw",
   format: function (pattern) {
-    return 'charging plasma cannon ' + pattern
-  }
-})
+    return "charging plasma cannon " + pattern;
+  },
+});
 
 // Display loading indicator for 5 seconds, and then stop.
-loader.start()
-setTimeout(function () { loader.stop() }, 5000)
+loader.start();
+setTimeout(function () {
+  loader.stop();
+}, 5000);
 ```
 
 # credits
