@@ -1,4 +1,6 @@
-# braille-pattern-cli-loading-indicator [![Test](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml/badge.svg)](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml) [![NPM Version](http://img.shields.io/npm/v/braille-pattern-cli-loading-indicator.svg?style=flat)](https://www.npmjs.org/package/braille-pattern-cli-loading-indicator)
+<!-- markdownlint-disable MD013 MD033 MD045 -->
+
+# cli-loading-indicator [![Test](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml/badge.svg)](https://github.com/edisoncks/braille-pattern-cli-loading-indicator/actions/workflows/test.yml) [![NPM Version](http://img.shields.io/npm/v/braille-pattern-cli-loading-indicator.svg?style=flat)](https://www.npmjs.org/package/braille-pattern-cli-loading-indicator)
 
 Animated command line loading indicator using Unicode braille patterns (based on
 Heroku CLI).
@@ -34,7 +36,7 @@ Heroku CLI).
   </tr>
 </table>
 
-# usage
+## Usage
 
 - Use `start()` and `stop()` to enable or disable the loading indicator.
 - Optionally specify `rotation` as `cw` (clockwise) or `ccw` (counterclockwise)
@@ -43,10 +45,10 @@ Heroku CLI).
 
 ```javascript
 // ESM
-import LoadingIndicator from "braille-pattern-cli-loading-indicator";
+import LoadingIndicator from "@edisoncks/cli-loading-indicator";
 
 // CommonJS
-const LoadingIndicator = require("braille-pattern-cli-loading-indicator").default;
+const LoadingIndicator = require("@edisoncks/cli-loading-indicator").default;
 
 const loader = new LoadingIndicator({
   size: "large",
@@ -61,7 +63,7 @@ setTimeout(() => {
 }, 5000);
 ```
 
-# credits
+## Credits
 
-heavily inspired by [heroku cli](https://github.com/heroku/heroku) loading
+Heavily inspired by [heroku cli](https://github.com/heroku/heroku) loading
 indicator

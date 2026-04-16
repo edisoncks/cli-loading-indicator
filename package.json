@@ -1,6 +1,6 @@
 {
-  "name": "braille-pattern-cli-loading-indicator",
-  "version": "0.0.4",
+  "name": "@edisoncks/cli-loading-indicator",
+  "version": "1.0.0",
   "description": "Animated CLI loading indicator using Unicode braille patterns",
   "main": "dist/index.cjs",
   "type": "module",
@@ -27,7 +27,13 @@
   "contributors": [
     "Edison Chong"
   ],
-  "repository": "github:edisoncks/braille-pattern-cli-loading-indicator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edisoncks/braille-pattern-cli-loading-indicator.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "braille",
     "loading",
