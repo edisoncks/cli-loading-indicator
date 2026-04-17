@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import LoadingIndicator from "../index.js";
+import LoadingIndicator from "#lib";
 
 describe("LoadingIndicator", () => {
   it("should have correct default patterns for large size", () => {

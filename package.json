@@ -9,6 +9,9 @@
     "import": "./dist/index.mjs",
     "require": "./dist/index.cjs"
   },
+  "imports": {
+    "#lib": "./index.js"
+  },
   "files": [
     "dist/",
     "index.d.ts"
