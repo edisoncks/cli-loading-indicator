@@ -22,7 +22,7 @@
     "build:cjs": "esbuild index.js --outfile=dist/index.cjs --format=cjs --platform=node --bundle",
     "test": "vitest run --coverage",
     "format": "prettier --write .",
-    "preversion": "npm test"
+    "prepublishOnly": "npm test"
   },
   "author": "Peter Graham",
   "contributors": [
