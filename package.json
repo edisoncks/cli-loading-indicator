@@ -20,7 +20,7 @@
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "esbuild index.js --outfile=dist/index.mjs --format=esm --platform=node --bundle",
     "build:cjs": "esbuild index.js --outfile=dist/index.cjs --format=cjs --platform=node --bundle",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "format": "prettier --write .",
     "preversion": "npm test"
   },
@@ -43,6 +43,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.4",
     "chalk": "^5.0.0",
     "esbuild": "^0.28.0",
     "prettier": "^3.8.3",
