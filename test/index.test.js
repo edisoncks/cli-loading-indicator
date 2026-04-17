@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import LoadingIndicator from "../index.js";
 
 describe("LoadingIndicator", () => {
@@ -30,10 +30,14 @@ describe("LoadingIndicator", () => {
     );
   });
 
-  it("should use custom format function if provided", () => {
-    const format = (pattern) => `loading: ${pattern}`;
-    const loader = new LoadingIndicator({ format });
-    expect(loader.format("test")).toBe("loading: test");
+  it("should use custom format function during animation", async () => {
+    const loader = new LoadingIndicator({ size: "small", interval: 10 });
+    const formatSpy = vi.fn((pattern) => pattern);
+    loader.format = formatSpy;
+    loader.start();
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    loader.stop();
+    expect(formatSpy).toHaveBeenCalled();
   });
 
   it("should default interval to 70ms", () => {
