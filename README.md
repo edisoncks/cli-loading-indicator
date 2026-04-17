@@ -63,6 +63,20 @@ setTimeout(() => {
 }, 5000);
 ```
 
+## Compatibility
+
+This library uses ANSI escape sequences for cursor control and animation.
+Supported terminals include:
+
+- **Linux** — gnome-terminal, konsole, xterm, Alacritty, Kitty, WezTerm
+- **macOS** — terminal.app, iTerm2, Alacritty, Kitty
+- **Windows** — Windows Terminal
+
+Limited or no support:
+
+- **Legacy Windows Console** — cmd.exe, PowerShell (before Windows 10 1903).
+  DEC private modes (`?25l/h`) were not supported in older environments.
+
 ## Credits
 
 Heavily inspired by [heroku cli](https://github.com/heroku/heroku) loading
