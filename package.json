@@ -2,28 +2,26 @@
   "name": "@edisoncks/cli-loading-indicator",
   "version": "1.0.3",
   "description": "Animated CLI loading indicator using Unicode braille patterns",
+  "source": "src/index.ts",
   "main": "dist/index.cjs",
-  "types": "index.d.ts",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
     "import": "./dist/index.mjs",
     "require": "./dist/index.cjs"
   },
-  "imports": {
-    "#lib": "./index.js"
-  },
   "files": [
-    "dist/",
-    "index.d.ts"
+    "dist/"
   ],
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "esbuild index.js --outfile=dist/index.mjs --format=esm --platform=node --bundle",
-    "build:cjs": "esbuild index.js --outfile=dist/index.cjs --format=cjs --platform=node --bundle",
+    "build": "parcel build",
+    "watch": "parcel watch",
     "test": "vitest run --coverage",
+    "dev": "tsx examples/simple.ts",
     "format": "prettier --write .",
     "prepublishOnly": "npm test"
   },
@@ -46,10 +44,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@parcel/packager-ts": "^2.16.4",
+    "@parcel/transformer-typescript-types": "^2.16.4",
+    "@tsconfig/node22": "^22.0.5",
+    "@types/node": "^25.6.0",
     "@vitest/coverage-v8": "^4.1.4",
     "chalk": "^5.0.0",
-    "esbuild": "^0.28.0",
+    "parcel": "^2.16.4",
     "prettier": "^3.8.3",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.4"
   }
 }

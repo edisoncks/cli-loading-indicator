@@ -1,60 +1,67 @@
-"use strict";
+import * as readline from "readline";
 
-import readline from "readline";
+export interface LoadingIndicatorOptions {
+  size?: "small" | "large";
+  rotation?: "cw" | "ccw";
+  interval?: number;
+  format?: (pattern: string, index: number) => string;
+}
 
-class LoadingIndicator {
-  // Braille patterns from:
-  // http://symbolcodes.tlt.psu.edu/bylanguage/braillechart.html
+export class LoadingIndicator {
   static PATTERNS = {
     small: ["⠟", "⠯", "⠷", "⠾", "⠽", "⠻"],
     large: ["⡿", "⣟", "⣯", "⣷", "⣾", "⣽", "⣻", "⢿"],
   };
 
-  // Public properties (required for backwards compatibility)
-  size;
-  patterns;
-  interval;
-  format;
+  size: string;
+  patterns: string[];
+  interval: number;
+  format: (pattern: string, index: number) => string;
 
-  // Private properties
-  #readlineInterface;
-  #animationInterval;
-  #patternIndex = 0;
+  #readlineInterface: readline.Interface | null = null;
+  #animationInterval: ReturnType<typeof setInterval> | null = null;
+  #patternIndex: number = 0;
+  #outputStream: NodeJS.WriteStream | null = null;
 
-  constructor(attributes = {}) {
+  constructor(attributes: LoadingIndicatorOptions = {}) {
     this.size = attributes.size ?? "large";
-    this.patterns = [...LoadingIndicator.PATTERNS[this.size]];
+    this.patterns = [
+      ...LoadingIndicator.PATTERNS[
+        this.size as keyof typeof LoadingIndicator.PATTERNS
+      ],
+    ];
     this.interval = attributes.interval ?? 70;
-    this.format = attributes.format ?? ((pattern) => pattern);
+    this.format = attributes.format ?? ((pattern: string) => pattern);
 
     if (attributes.rotation === "cw") {
       this.patterns.reverse();
     }
   }
 
-  start() {
+  start(): void {
     this.#readlineInterface = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
     });
+    this.#outputStream = process.stdout;
     process.stdout.write("\x1b[?25l");
     this.#patternIndex = 0;
     this.#animationInterval = setInterval(() => this.#animate(), this.interval);
   }
 
-  stop() {
+  stop(): void {
     this.#resetLineAndCursor();
     process.stdout.write("\x1b[?25h");
-    this.#readlineInterface.close();
+    this.#readlineInterface?.close();
     if (this.#animationInterval) {
       clearInterval(this.#animationInterval);
       this.#animationInterval = null;
     }
   }
 
-  #animate() {
+  #animate(): void {
     this.#resetLineAndCursor();
-    this.#readlineInterface.output.write(
+    this.#outputStream?.write(
       this.format(this.patterns[this.#patternIndex], this.#patternIndex),
     );
     this.#patternIndex =
@@ -63,7 +70,7 @@ class LoadingIndicator {
         : 0;
   }
 
-  #resetLineAndCursor() {
+  #resetLineAndCursor(): void {
     readline.clearLine(process.stdout, 0);
     readline.cursorTo(process.stdout, 0);
   }

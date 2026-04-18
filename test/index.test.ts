@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import LoadingIndicator from "#lib";
+import LoadingIndicator from "../src/index.ts";
 
 describe("LoadingIndicator", () => {
   it("should have correct default patterns for large size", () => {
@@ -32,7 +32,7 @@ describe("LoadingIndicator", () => {
 
   it("should use custom format function during animation", async () => {
     const loader = new LoadingIndicator({ size: "small", interval: 10 });
-    const formatSpy = vi.fn((pattern) => pattern);
+    const formatSpy = vi.fn((pattern: string) => pattern);
     loader.format = formatSpy;
     loader.start();
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -80,19 +80,17 @@ describe("LoadingIndicator", () => {
   it("should cycle through all patterns", () => {
     const loader = new LoadingIndicator({ size: "large", interval: 10 });
     const originalFormat = loader.format;
-    const seenPatterns = [];
+    const seenPatterns: Array<{ pattern: string; index: number }> = [];
     loader.format = (pattern, index) => {
       seenPatterns.push({ pattern, index });
-      return originalFormat(pattern);
+      return originalFormat(pattern, index);
     };
     loader.start();
-    // Wait long enough to see multiple cycles
     return new Promise((resolve) => {
       setTimeout(() => {
         loader.stop();
-        // Should have cycled through patterns multiple times
         expect(seenPatterns.length).toBeGreaterThan(loader.patterns.length);
-        resolve();
+        resolve(undefined);
       }, 100);
     });
   });
